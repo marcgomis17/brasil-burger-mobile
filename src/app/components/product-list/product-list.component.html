@@ -1,0 +1,9 @@
+<ion-grid fixed>
+  <ion-row>
+    <ng-container *ngFor="let produit of produits">
+      <ion-col size="6">
+        <app-card [produit]="produit" routerLink="details/{{produit.id}}"></app-card>
+      </ion-col>
+    </ng-container>
+  </ion-row>
+</ion-grid>
