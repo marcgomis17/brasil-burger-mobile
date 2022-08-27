@@ -15,35 +15,10 @@
   <ion-infinite-scroll threshold="100px">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
       <ng-container *ngIf="filterValue==='burgers'">
-        <ion-grid fixed>
-          <ion-row>
-            <ng-container *ngFor="let burger of (catalogue$|async).burgers">
-              <ion-col size="6">
-                <ion-card button routerLink="details/{{burger.id}}" (click)="goTo(burger.id)">
-                  <ion-card-header>
-                    <ion-img src="data:image/png;base64,{{burger?.image}}"></ion-img>
-                  </ion-card-header>
-
-                  <ion-card-content>
-                    <ion-card-subtitle id="product-name">{{burger.nom}}</ion-card-subtitle>
-                    <ion-card-subtitle id="product-price">{{burger.prix|currency:'XOF'}}</ion-card-subtitle>
-                    <div id="card-btn-container">
-                      <ng-container *ngIf="showCounter===false">
-                        <ion-button (click)="onClick()" expand="block" fill="solid" class="default-theme-btn">Acheter</ion-button>
-                      </ng-container>
-                      <ng-container *ngIf="showCounter===true">
-                        <app-quantity-box (amountChanged)="getAmount($event)"></app-quantity-box>
-                      </ng-container>
-                    </div>
-                  </ion-card-content>
-                </ion-card>
-              </ion-col>
-            </ng-container>
-          </ion-row>
-        </ion-grid>
+        <app-product-list [produits]="(catalogue$|async).burgers"></app-product-list>
       </ng-container>
       <ng-container *ngIf="filterValue==='menus'">
-        <!-- <app-product-list [produits]="(catalogue$|async).menus"></app-product-list> -->
+        <app-product-list [produits]="(catalogue$|async).menus"></app-product-list>
       </ng-container>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
