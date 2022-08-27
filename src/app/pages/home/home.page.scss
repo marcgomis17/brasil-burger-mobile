@@ -1,0 +1,59 @@
+ion-toolbar {
+  ion-item {
+    ion-search-bar {
+      padding-right: 0;
+    }
+
+    ion-button {
+      margin: 0 0 5% 2%;
+      height: max-content;
+
+      ion-icon {
+        font-size: x-large;
+      }
+    }
+  }
+}
+
+/* ########## Card component  ########## */
+ion-card {
+  margin: 0;
+  height: 30vh;
+
+  ion-card-header {
+    padding: 0;
+
+    ion-img {
+      height: 14vh;
+      width: 100%;
+      background-color: #fff;
+    }
+  }
+
+  ion-card-content {
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+    padding: 0 3%;
+
+    ion-card-subtitle {
+      font-size: small;
+      width: 100%;
+      text-align: left;
+    }
+
+    #product-name {
+      font-size: x-small;
+    }
+
+    #card-btn-container {
+      padding: 0 2%;
+    }
+
+    ion-button {
+      height: 5vh;
+      font-size: smaller;
+    }
+  }
+}
