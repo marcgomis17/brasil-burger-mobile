@@ -1,0 +1,18 @@
+<ion-card button>
+  <ion-card-header>
+    <ion-img src="data:image/png;base64,{{produit?.image}}"></ion-img>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-card-subtitle id="product-name">{{produit.nom}}</ion-card-subtitle>
+    <ion-card-subtitle id="product-price">{{produit.prix|currency:'XOF'}}</ion-card-subtitle>
+    <div id="card-btn-container">
+      <ng-container *ngIf="showCounter===false">
+        <ion-button (click)="onClick()" expand="block" fill="solid" class="default-theme-btn">Acheter</ion-button>
+      </ng-container>
+      <ng-container *ngIf="showCounter===true">
+        <app-quantity-box (amountChanged)="getAmount($event)"></app-quantity-box>
+      </ng-container>
+    </div>
+  </ion-card-content>
+</ion-card>
