@@ -1,0 +1,14 @@
+#quantity-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    ion-button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5vh;
+        width: 5vh;
+    }
+}
