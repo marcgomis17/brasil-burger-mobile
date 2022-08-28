@@ -42,9 +42,4 @@ export class HomePage implements OnInit {
       this.showCounter = false;
     }
   }
-
-  goTo(id: any) {
-    console.log('display -details', id);
-    this.router.navigate(['/details', id]);
-  }
 }

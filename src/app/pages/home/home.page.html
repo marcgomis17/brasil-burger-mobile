@@ -8,17 +8,27 @@
         </ion-button>
       </ng-container>
     </ion-item>
+    <ion-segment (ionChange)="getFilterValue($event)" value="burgers" mode="ios">
+      <ion-segment-button value="burgers">
+        <ion-label>Burgers</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="menus">
+        <ion-label>Menus</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-infinite-scroll threshold="100px">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-      <ng-container *ngIf="filterValue==='burgers'">
-        <app-product-list [produits]="(catalogue$|async).burgers"></app-product-list>
-      </ng-container>
-      <ng-container *ngIf="filterValue==='menus'">
-        <app-product-list [produits]="(catalogue$|async).menus"></app-product-list>
+    <ion-infinite-scroll-content>
+      <ng-container *ngIf="(catalogue$|async) as catalogue">
+        <ng-container *ngIf="filterValue==='burgers'">
+          <app-product-list [produits]="catalogue.burgers" [display]="'vertical'"></app-product-list>
+        </ng-container>
+        <ng-container *ngIf="filterValue==='menus'">
+          <app-product-list [produits]="catalogue.menus" [display]="'vertical'"></app-product-list>
+        </ng-container>
       </ng-container>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
