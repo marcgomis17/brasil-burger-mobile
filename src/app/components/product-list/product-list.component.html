@@ -1,9 +1,21 @@
-<ion-grid fixed>
-  <ion-row>
-    <ng-container *ngFor="let produit of produits">
-      <ion-col size="6">
-        <app-card [produit]="produit" routerLink="details/{{produit.id}}"></app-card>
-      </ion-col>
-    </ng-container>
-  </ion-row>
-</ion-grid>
+<ng-container *ngIf="display==='vertical'">
+  <ion-grid fixed>
+    <ion-row>
+      <ng-container *ngFor="let produit of produits">
+        <ion-col size="6">
+          <app-card [produit]="produit"></app-card>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+</ng-container>
+
+<ng-container *ngIf="display==='horizontal'">
+  <!--  <ion-grid fixed>
+    <ion-row class="ion-align-items-center"> -->
+  <ng-container *ngFor="let produit of produits">
+    <app-card [produit]="produit" [prix]="prix"></app-card>
+  </ng-container>
+  <!-- </ion-row>
+  </ion-grid> -->
+</ng-container>

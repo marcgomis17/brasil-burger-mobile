@@ -1,0 +1,16 @@
+.complement-container {
+    margin-top: 4vh;
+}
+
+.horizontal {
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 2%;
+    overflow-x: scroll;
+}
+
+ion-footer {
+    ion-toolbar {
+        padding: 0 5%;
+    }
+}

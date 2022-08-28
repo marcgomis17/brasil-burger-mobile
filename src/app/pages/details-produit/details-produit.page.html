@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Détails</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <pre>{{detailsProduit$|async|json}}</pre> -->
+  <ng-container *ngIf="(detailsProduit$|async) as details">
+    <ng-container *ngIf="details.produit as produit">
+      <ion-img src="data:image/png;base64,{{produit?.image}}"></ion-img>
+      <h6>{{produit.nom}}</h6>
+      <h4>{{produit.prix|currency:'XOF'}}</h4>
+      <ng-container *ngIf="produit.type==='burger'">
+        <div class="complement-container">
+          <h6>Boissons</h6>
+          <ng-container *ngFor="let tailleBoisson of details.tailleBoissons">
+            <app-product-list class="horizontal" [produits]="tailleBoisson.boissons" [display]="'horizontal'" [prix]="tailleBoisson.prix"></app-product-list>
+          </ng-container>
+        </div>
+        <div class="complement-container">
+          <h6>Frites</h6>
+          <app-product-list class="horizontal" [produits]="details.frites" [display]="'horizontal'"></app-product-list>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="produit.type==='menu'">
+        <div id="description">
+          <h6>Composition</h6>
+          <ul id="compostion-list">
+            <ng-container *ngFor="let menuBurger of produit.menuBurgers">
+              <li>{{menuBurger.quantite}} {{menuBurger.burger.nom}}</li>
+            </ng-container>
+            <ng-container *ngFor="let menuFrites of produit.menuFrites">
+              <li>{{menuFrites.quantite}} Portion frite {{menuFrites.frites.nom|lowercase}}</li>
+            </ng-container>
+            <ng-container *ngFor="let menuTaille of produit.menuTailles">
+              <li>{{menuTaille.quantite}} Boisson {{menuTaille.tailles.libelle|lowercase}}</li>
+            </ng-container>
+          </ul>
+        </div>
+        <div class="complement-container">
+          <h6>Boissons</h6>
+          <ng-container *ngFor="let menuTaille of produit.menuTailles">
+            <div id="amount-display">{{menuTaille.tailles.libelle}}: {{menuTaille.quantite}}</div>
+            <app-product-list class="horizontal" [produits]="menuTaille.tailles.boissons" [display]="'horizontal'" [prix]="menuTaille.tailles.prix"></app-product-list>
+          </ng-container>
+        </div>
+        <div class="complement-container">
+          <h6>Frites</h6>
+          <!-- TODO: Display the product image properly -->
+          <!-- TODO: Display other products -->
+          <app-product-list class="horizontal" [produits]="produit.menuFrites" [display]="'horizontal'"></app-product-list>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ion-content>
+
+<ion-footer collapse="fade">
+  <ion-toolbar>
+    <ng-container *ngIf="showCounter===false">
+      <ion-button expand="block" fill="solid" class="default-theme-btn" id="order-btn" (click)="showCounter=true">
+        <ion-icon slot="start" name="cart-outline"></ion-icon>
+        Acheter
+      </ion-button>
+    </ng-container>
+    <ng-container *ngIf="showCounter===true">
+      <app-quantity-box (amountChanged)="getAmount($event)"></app-quantity-box>
+    </ng-container>
+  </ion-toolbar>
+</ion-footer>

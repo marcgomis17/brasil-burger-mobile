@@ -10,7 +10,7 @@ export class DetailsProduitService {
 
   constructor(private http: HttpClient) { }
 
-  getProductDetails(): Observable<any> {
-    return this.http.get(`${baseUrl}details/1`);
+  getProductDetails(id: number): Observable<any> {
+    return this.http.get(`${baseUrl}details/${id}`);
   }
 }

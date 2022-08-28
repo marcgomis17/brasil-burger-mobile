@@ -1,14 +1,23 @@
-<ion-card button>
-  <ion-card-header>
+<ion-card button [ngClass]="{'complement': produit.type==='boisson' || produit.type==='frite'}">
+  <ion-card-header routerLink="/details/{{produit.id}}">
     <ion-img src="data:image/png;base64,{{produit?.image}}"></ion-img>
   </ion-card-header>
 
   <ion-card-content>
-    <ion-card-subtitle id="product-name">{{produit.nom}}</ion-card-subtitle>
-    <ion-card-subtitle id="product-price">{{produit.prix|currency:'XOF'}}</ion-card-subtitle>
+    <div id="card-main-container" routerLink="/details/{{produit.id}}">
+      <ng-container *ngIf="produit.type !== 'boisson' && produit.type !== 'frite'">
+        <ion-card-subtitle id="product-name">{{produit.nom}}</ion-card-subtitle>
+      </ng-container>
+      <ng-container *ngIf="prix!==undefined">
+        <ion-card-subtitle id="product-price">{{prix|currency:'XOF'}}</ion-card-subtitle>
+      </ng-container>
+      <ng-container *ngIf="prix===undefined">
+        <ion-card-subtitle id="product-price">{{produit.prix|currency:'XOF'}}</ion-card-subtitle>
+      </ng-container>
+    </div>
     <div id="card-btn-container">
       <ng-container *ngIf="showCounter===false">
-        <ion-button (click)="onClick()" expand="block" fill="solid" class="default-theme-btn">Acheter</ion-button>
+        <ion-button (click)="showCounter=true" expand="block" fill="solid" class="default-theme-btn">Acheter</ion-button>
       </ng-container>
       <ng-container *ngIf="showCounter===true">
         <app-quantity-box (amountChanged)="getAmount($event)"></app-quantity-box>

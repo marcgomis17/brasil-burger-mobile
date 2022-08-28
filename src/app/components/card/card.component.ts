@@ -9,17 +9,12 @@ import { Produit } from 'src/app/models/produit';
 })
 export class CardComponent implements OnInit {
   @Input() produit: Produit;
+  @Input() prix: number | undefined;
   showCounter = false;
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-
-  }
-
-  onClick() {
-    this.showCounter = true;
-  }
+  ngOnInit() { }
 
   getAmount(amount: number) {
     if (amount === 0) {

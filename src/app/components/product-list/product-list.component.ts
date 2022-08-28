@@ -8,6 +8,8 @@ import { Produit } from 'src/app/models/produit';
 })
 export class ProductListComponent implements OnInit {
   @Input() produits: Produit[];
+  @Input() display: string;
+  @Input() prix: number | undefined;
 
   constructor() { }
 
