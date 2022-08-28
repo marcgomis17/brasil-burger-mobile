@@ -17,7 +17,7 @@
     </div>
     <div id="card-btn-container">
       <ng-container *ngIf="showCounter===false">
-        <ion-button (click)="showCounter=true" expand="block" fill="solid" class="default-theme-btn">Acheter</ion-button>
+        <ion-button (click)="addToCart()" expand="block" fill="solid" class="default-theme-btn">Acheter</ion-button>
       </ng-container>
       <ng-container *ngIf="showCounter===true">
         <app-quantity-box (amountChanged)="getAmount($event)"></app-quantity-box>
